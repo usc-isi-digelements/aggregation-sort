@@ -1,0 +1,33 @@
+{
+  "name": "aggregation-sort",
+  "version": "0.0.1",
+  "authors": [
+    "Next Century Corporation"
+  ],
+  "description": "An element used to change sorting on an elasticsearch aggregation",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "aggregation-sort.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/DigElements/aggregation-sort/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "iron-icons": "PolymerElements/iron-icons#^1.0.1",
+    "iron-icon": "PolymerElements/iron-icon#^1.0.1",
+    "polymer": "Polymer/polymer#^1.2.0",
+    "dig-common": "DigElements/dig-common#^0.0.4"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  },
+  "resolutions": {
+    "lodash": "^4.12.0"
+  }
+}

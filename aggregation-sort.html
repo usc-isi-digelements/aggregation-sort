@@ -1,0 +1,141 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../dig-common/dig-common.html">
+<link rel="import" href="../paper-styles/color.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/av-icons.html">
+<!--
+An element used to change sorting on an elasticsearch aggregation (can be used with elastic-client-aggregation-builder and checkbox-list-display).
+
+Example:
+
+    <aggregation-sort facets="[[countryFacets]]" 
+      order-by="{{countryOrderBy}}">
+    </aggregation-sort>
+
+### Styling
+
+`<aggregation-sort>` provides the following custom properties and mixins
+for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--default-icon-color` | Color for sort icons | --paper-grey-600
+`--icon-hover-color` | Icon color in hover | --paper-blue-800
+`--selected-icon-color` | Color of selected sort icon | --paper-blue-grey-800
+
+@demo demo/index.html
+-->
+
+<dom-module id="aggregation-sort">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      iron-icon {
+        color: var(--default-icon-color, --paper-grey-600);
+        margin: 2px;        
+        --iron-icon-height: 18px;
+        --iron-icon-width: 18px;
+      }
+      iron-icon:hover {
+        cursor: pointer;
+        color: var(--icon-hover-color,  --paper-blue-800);
+      }
+      .selected {
+        color: var(--selected-icon-color, --paper-blue-grey-800);
+      }
+    </style>
+
+    <template is="dom-if" if="[[facets.length]]">
+      <span class="horizontal layout end-justified">
+        Sort By:
+        <template is="dom-repeat" items="[[_sortOptions]]" as="option">
+          <iron-icon on-tap="updateSort"
+            class$="{{getIconClass(orderBy, option)}}"
+            title="[[option.title]]" icon$="[[option.icon]]">
+          </iron-icon>
+        </template>
+      </span>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'aggregation-sort',
+
+      properties: {
+        /**
+         * Computed list of facet buckets used for displaying checkboxes
+         *
+         * @type: [{text: 'Los Angeles, CA', key: 'Los Angeles', count: 10, enabled: true}]
+         */
+        facets: {
+          type: Array,
+          notify: true
+        },
+        /**
+         * Direction for sort (either 'asc' or 'desc')
+         */
+        sortDirection: {
+          type: String,
+          value: 'asc',
+          notify: true
+        },
+        /**
+         * Field on which to order aggregation.
+         */
+        orderBy: {
+          type: String,
+          value: '',
+          notify: true
+        },
+        /**
+         * Sort options to choose from with associated icons and titles.
+         */
+        _sortOptions: {
+          type: Array,
+          value: [{
+            title: 'Frequency',
+            orderBy: '',
+            icon: 'icons:sort'
+          },{
+            title: 'Alphabetical',
+            orderBy: '_term',
+            icon: 'av:sort-by-alpha'
+          }],
+          readOnly: true
+        }
+      },
+      /**
+       * When the user taps a sort option, update the orderBy property.
+       *
+       * @event tap
+       */
+      updateSort: function(event) {
+        this.orderBy = event.model.option.orderBy;
+      },
+      /**
+       * Use 'selected' icon class when orderBy and option match.
+       *
+       * @param {String} orderBy
+       * @param {Object} an option in _sortOptions
+       * @return {String} class to use
+       */
+      getIconClass: function(orderBy, option) {
+        return orderBy === option.orderBy ? 'selected' : '';
+      }
+    });
+  </script>
+</dom-module>
