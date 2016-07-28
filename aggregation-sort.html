@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-icons/av-icons.html">
+
 <!--
 An element used to change sorting on an elasticsearch aggregation (can be used with elastic-client-aggregation-builder and checkbox-list-display).
 
@@ -48,10 +49,12 @@ Custom property | Description | Default
         margin: 2px;        
         --iron-icon-height: 18px;
         --iron-icon-width: 18px;
+        vertical-align: middle;
+        display: inline-block;
       }
       iron-icon:hover {
         cursor: pointer;
-        color: var(--icon-hover-color,  --paper-blue-800);
+        color: var(--icon-hover-color, --paper-blue-800);
       }
       .selected {
         color: var(--selected-icon-color, --paper-blue-grey-800);
@@ -59,15 +62,17 @@ Custom property | Description | Default
     </style>
 
     <template is="dom-if" if="[[facets.length]]">
-      <span class="horizontal layout end-justified">
-        Sort By:
-        <template is="dom-repeat" items="[[_sortOptions]]" as="option">
-          <iron-icon on-tap="updateSort"
-            class$="{{getIconClass(orderBy, option)}}"
-            title="[[option.title]]" icon$="[[option.icon]]">
-          </iron-icon>
-        </template>
-      </span>
+      <div class="horizontal layout end-justified">
+        <span>
+          Sort By:
+          <template is="dom-repeat" items="[[_sortOptions]]" as="option">
+            <iron-icon on-tap="updateSort"
+              class$="{{getIconClass(orderBy, option)}}"
+              title="[[option.title]]" icon$="[[option.icon]]">
+            </iron-icon>
+          </template>
+        </span>
+      </div>
     </template>
   </template>
 
