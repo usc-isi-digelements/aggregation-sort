@@ -1,13 +1,3 @@
-<!doctype html>
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
 <html>
   <head>
     <meta charset="utf-8">
@@ -32,55 +22,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('aggregation-sort tests', function() {
         var element;
 
-        setup(function() {
+        setup(function(done) {
           element = fixture('aggregation-sort-fixture');
+          flush(done);
         });
 
-        test('expect properties to have default values', function() {
-          assert.isUndefined(element.facets);
-          assert.equal(element.sortDirection, 'asc');
+        test('properties have default values', function() {
           assert.equal(element.orderBy, '');
-          assert.equal(element._sortOptions.length, 2);
-          assert.deepEqual(element._sortOptions[0], {title: 'Frequency', orderBy: '', icon: 'icons:sort'});
-          assert.deepEqual(element._sortOptions[1], {title: 'Alphabetical', orderBy: '_term', icon: 'av:sort-by-alpha'});
+          assert.equal(element.sortOptions.length, 2);
+          assert.deepEqual(element.sortOptions[0], {title: 'Frequency', orderBy: '', icon: 'icons:sort'});
+          assert.deepEqual(element.sortOptions[1], {title: 'Alphabetical', orderBy: '_term', icon: 'av:sort-by-alpha'});
         });
 
-        test('if no facets defined, template should be empty', function() {
-          assert.isNull(element.$$('div'));
-        });
-
-        test('updateSort changes orderBy based on event parameter', function() {
+        test('_updateSort changes orderBy based on event parameter', function() {
           var eventToPassIn = document.createEvent('UIEvent');
           eventToPassIn.model = {
-            option: element._sortOptions[1]
+            option: element.sortOptions[1]
           };
 
-          element.updateSort(eventToPassIn);
+          element._updateSort(eventToPassIn);
           assert.equal(element.orderBy, '_term');
         });
 
-        test('getIconClass returns appropriate class', function() {
-          assert.equal(element.getIconClass(element.orderBy, element._sortOptions[0]), 'selected');
-          assert.equal(element.getIconClass(element.orderBy, element._sortOptions[1]), '');
+        test('_getIconClass returns appropriate class', function() {
+          assert.equal(element._getIconClass(element.orderBy, element.sortOptions[0]), 'selected');
+          assert.equal(element._getIconClass(element.orderBy, element.sortOptions[1]), '');
         });
 
-        test('if facets.length is greater than 0, elements will be added to the DOM', function(done) {
-          element.facets = [{text: 'Los Angeles, CA', key: 'Los Angeles', count: 10, enabled: true}];
-          flush(function() {
-            var eventToPassIn = document.createEvent('UIEvent');
-            eventToPassIn.model = {
-              option: 'someOption'
-            };
-            assert.isNotNull(element.$$('div'));
-            assert.equal(Polymer.dom(element.root).querySelectorAll('iron-icon').length, 2);
-            assert.isNotNull(element.$$('iron-icon[title="Frequency"][icon="icons:sort"]'));
-            assert.isTrue(element.$$('iron-icon[title="Frequency"][icon="icons:sort"]').className.includes('selected'));
-            assert.deepEqual(element.$$('iron-icon[title="Frequency"][icon="icons:sort"]').onTap, element.updateSort(eventToPassIn));
-            assert.isNotNull(element.$$('iron-icon[title="Alphabetical"][icon="av:sort-by-alpha"]'));
-            assert.isFalse(element.$$('iron-icon[title="Alphabetical"][icon="av:sort-by-alpha"]').className.includes('selected'));
-            assert.deepEqual(element.$$('iron-icon[title="Alphabetical"][icon="av:sort-by-alpha"]').onTap, element.updateSort(eventToPassIn));
-            done();
-          });
+        test('correct elements are in the DOM', function() {
+          var eventToPassIn = document.createEvent('UIEvent');
+          eventToPassIn.model = {
+            option: 'someOption'
+          };
+          assert.isNotNull(element.$$('div'));
+          assert.equal(Polymer.dom(element.root).querySelectorAll('iron-icon').length, 2);
+          assert.isNotNull(element.$$('iron-icon[title="Frequency"][icon="icons:sort"]'));
+          assert.isTrue(element.$$('iron-icon[title="Frequency"][icon="icons:sort"]').className.includes('selected'));
+          assert.deepEqual(element.$$('iron-icon[title="Frequency"][icon="icons:sort"]').onTap, element._updateSort(eventToPassIn));
+          assert.isNotNull(element.$$('iron-icon[title="Alphabetical"][icon="av:sort-by-alpha"]'));
+          assert.isFalse(element.$$('iron-icon[title="Alphabetical"][icon="av:sort-by-alpha"]').className.includes('selected'));
+          assert.deepEqual(element.$$('iron-icon[title="Alphabetical"][icon="av:sort-by-alpha"]').onTap, element._updateSort(eventToPassIn));
         });
       });
     </script>
