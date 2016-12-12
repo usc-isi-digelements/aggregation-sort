@@ -8,8 +8,9 @@
 A Polymer Element showing sorting options as clickable icons.
 
 ### Example
-
-    <aggregation-sort order-by="{{orderBy}}"></aggregation-sort>
+```html
+<aggregation-sort order-by="{{orderBy}}"></aggregation-sort>
+```
 
 ### Styling
 
@@ -66,6 +67,8 @@ Custom property         | Description                 | Default
 
       properties: {
         /**
+         * (Output)
+         *
          * Field on which to order aggregation.
          *
          * @type {String}
@@ -78,6 +81,8 @@ Custom property         | Description                 | Default
         },
 
         /**
+         * (Optional)
+         *
          * Sort options to choose from with associated icons and titles.
          *
          * @type {Array}
