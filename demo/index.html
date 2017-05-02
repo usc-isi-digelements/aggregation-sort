@@ -23,20 +23,18 @@ limitations under the License.
     <link rel="import" href="../aggregation-sort.html">
   </head>
   <body unresolved>
-
     <template is="dom-bind" id="demo">
       <p>Current aggregation sort option: [[getOrderByString(orderBy)]]</p>
       <aggregation-sort order-by="{{orderBy}}">
       </aggregation-sort>
     </template>
     <script>
-        (function(document) {
-            var demo = document.querySelector('#demo');
-            demo.getOrderByString = function(orderBy) {
-              return orderBy === '' ? 'Blank (default option)' : orderBy;
-            };
-        })(document);
+      (function(document) {
+        var demo = document.querySelector('#demo');
+        demo.getOrderByString = function(orderBy) {
+          return orderBy === '' ? 'Blank (default option)' : orderBy;
+        };
+      })(document);
     </script>
-
   </body>
 </html>
