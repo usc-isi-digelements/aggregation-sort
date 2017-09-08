@@ -19,22 +19,24 @@ limitations under the License.
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>aggregation-sort Demo</title>
-    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
     <link rel="import" href="../aggregation-sort.html">
   </head>
   <body unresolved>
-    <template is="dom-bind" id="demo">
-      <p>Current aggregation sort option: [[getOrderByString(orderBy)]]</p>
-      <aggregation-sort order-by="{{orderBy}}">
-      </aggregation-sort>
-    </template>
-    <script>
-      (function(document) {
-        var demo = document.querySelector('#demo');
-        demo.getOrderByString = function(orderBy) {
-          return orderBy === '' ? 'Blank (default option)' : orderBy;
-        };
-      })(document);
-    </script>
+    <dom-bind>
+      <script>
+        (function(document) {
+          var domBind = document.querySelector('dom-bind');
+          domBind.getOrderByString = function(orderBy) {
+            return orderBy === '' ? 'Blank (default option)' : orderBy;
+          };
+        })(document);
+      </script>
+      <template is="dom-bind" id="demo">
+        <p>Current aggregation sort option: [[getOrderByString(orderBy)]]</p>
+        <aggregation-sort order-by="{{orderBy}}">
+        </aggregation-sort>
+      </template>
+    </dom-bind>
   </body>
 </html>
