@@ -14,8 +14,8 @@ A Polymer Element showing sorting options as clickable icons.
 Custom property         | Description                 | Default
 ------------------------|-----------------------------|---------------------
 `--default-icon-color`  | Color for sort icons        | --paper-grey-600
-`--icon-hover-color`    | Icon color in hover         | --paper-blue-800
-`--selected-icon-color` | Color of selected sort icon | --paper-blue-grey-800
+`--icon-hover-color`    | Icon color in hover         | --paper-grey-900
+`--selected-icon-color` | Color of selected sort icon | --paper-grey-900
 
 ### Dependencies
 

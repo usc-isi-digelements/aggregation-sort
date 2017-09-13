@@ -15,10 +15,11 @@ limitations under the License.
 -->
 
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-styles/color.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-icons/av-icons.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-styles/color.html">
 
 <!--
 A Polymer Element showing sorting options as clickable icons.
@@ -35,37 +36,40 @@ A Polymer Element showing sorting options as clickable icons.
 Custom property         | Description                 | Default
 ------------------------|-----------------------------|---------------------
 `--default-icon-color`  | Color for sort icons        | --paper-grey-600
-`--icon-hover-color`    | Icon color in hover         | --paper-blue-800
-`--selected-icon-color` | Color of selected sort icon | --paper-blue-grey-800
+`--icon-hover-color`    | Icon color in hover         | --paper-grey-900
+`--selected-icon-color` | Color of selected sort icon | --paper-grey-900
 
 @demo demo/index.html
 -->
 
 <dom-module id="aggregation-sort">
   <template>
+    <style include="iron-flex iron-flex-alignment"></style>
+
     <style>
       :host {
         display: block;
       }
+      span {
+        margin-right: 10px;
+      }
       iron-icon {
-        color: var(--default-icon-color, --paper-grey-600);
-        margin: 2px;
+        color: var(--default-icon-color, var(--paper-grey-600));
+        margin-right: 5px;
         --iron-icon-height: 18px;
         --iron-icon-width: 18px;
-        vertical-align: middle;
-        display: inline-block;
       }
       iron-icon:hover {
         cursor: pointer;
-        color: var(--icon-hover-color, --paper-blue-800);
+        color: var(--icon-hover-color, var(--paper-grey-900));
       }
       .selected {
-        color: var(--selected-icon-color, --paper-blue-grey-800);
+        color: var(--selected-icon-color, var(--paper-grey-900));
       }
     </style>
 
-    <div>
-      <span>Sort By:</span>
+    <div class="layout horizontal center">
+      <span>Sort By</span>
       <template is="dom-repeat" items="[[sortOptions]]" as="option">
         <iron-icon
           class$="{{_getIconClass(orderBy, option)}}"
