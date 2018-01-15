@@ -41,8 +41,8 @@ limitations under the License.
         test('properties have default values', function() {
           assert.equal(element.orderBy, '');
           assert.equal(element.sortOptions.length, 2);
-          assert.deepEqual(element.sortOptions[0], {title: 'Frequency', orderBy: '', icon: 'icons:sort'});
-          assert.deepEqual(element.sortOptions[1], {title: 'Alphabetical', orderBy: '_term', icon: 'av:sort-by-alpha'});
+          assert.deepEqual(element.sortOptions[0], {title: 'Frequency', orderBy: '', icon: 'fa:sort-amount-desc'});
+          assert.deepEqual(element.sortOptions[1], {title: 'Alphabetical', orderBy: '_term', icon: 'fa:sort-alpha-asc'});
         });
 
         test('_updateSort changes orderBy based on event parameter', function() {
@@ -67,12 +67,12 @@ limitations under the License.
           };
           assert.isNotNull(element.$$('div'));
           assert.equal(Polymer.dom(element.root).querySelectorAll('iron-icon').length, 2);
-          assert.isNotNull(element.$$('iron-icon[title="Frequency"][icon="icons:sort"]'));
-          assert.isTrue(element.$$('iron-icon[title="Frequency"][icon="icons:sort"]').className.includes('selected'));
-          assert.deepEqual(element.$$('iron-icon[title="Frequency"][icon="icons:sort"]').onTap, element._updateSort(eventToPassIn));
-          assert.isNotNull(element.$$('iron-icon[title="Alphabetical"][icon="av:sort-by-alpha"]'));
-          assert.isFalse(element.$$('iron-icon[title="Alphabetical"][icon="av:sort-by-alpha"]').className.includes('selected'));
-          assert.deepEqual(element.$$('iron-icon[title="Alphabetical"][icon="av:sort-by-alpha"]').onTap, element._updateSort(eventToPassIn));
+          assert.isNotNull(element.$$('iron-icon[title="Frequency"][icon="fa:sort-amount-desc"]'));
+          assert.isTrue(element.$$('iron-icon[title="Frequency"][icon="fa:sort-amount-desc"]').className.includes('selected'));
+          assert.deepEqual(element.$$('iron-icon[title="Frequency"][icon="fa:sort-amount-desc"]').onTap, element._updateSort(eventToPassIn));
+          assert.isNotNull(element.$$('iron-icon[title="Alphabetical"][icon="fa:sort-alpha-asc"]'));
+          assert.isFalse(element.$$('iron-icon[title="Alphabetical"][icon="fa:sort-alpha-asc"]').className.includes('selected'));
+          assert.deepEqual(element.$$('iron-icon[title="Alphabetical"][icon="fa:sort-alpha-asc"]').onTap, element._updateSort(eventToPassIn));
         });
       });
     </script>

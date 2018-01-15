@@ -15,10 +15,9 @@ limitations under the License.
 -->
 
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../fontawesome-iconset/fa-all.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../iron-icons/av-icons.html">
-<link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../paper-styles/color.html">
 
 <!--
@@ -50,14 +49,11 @@ Custom property         | Description                 | Default
       :host {
         display: block;
       }
-      span {
-        margin-right: 10px;
-      }
       iron-icon {
         color: var(--default-icon-color, var(--paper-grey-600));
         margin-right: 5px;
-        --iron-icon-height: 18px;
-        --iron-icon-width: 18px;
+        --iron-icon-height: 16px;
+        --iron-icon-width: 16px;
       }
       iron-icon:hover {
         cursor: pointer;
@@ -69,7 +65,6 @@ Custom property         | Description                 | Default
     </style>
 
     <div class="layout horizontal center">
-      <span>Sort By</span>
       <template is="dom-repeat" items="[[sortOptions]]" as="option">
         <iron-icon
           class$="{{_getIconClass(orderBy, option)}}"
@@ -106,18 +101,18 @@ Custom property         | Description                 | Default
          * Sort options to choose from with associated icons and titles.
          *
          * @type {Array}
-         * @default [{title: 'Frequency', orderBy: '', icon: 'icons:sort'}, {title: 'Alphabetical', orderBy: '_term', icon: 'av:sort-by-alpha'}]
+         * @default [{title: 'Frequency', orderBy: '', icon: 'fa:sort-amount-desc'}, {title: 'Alphabetical', orderBy: '_term', icon: 'fa:sort-alpha-asc'}]
          */
         sortOptions: {
           type: Array,
           value: [{
             title: 'Frequency',
             orderBy: '',
-            icon: 'icons:sort'
+            icon: 'fa:sort-amount-desc'
           },{
             title: 'Alphabetical',
             orderBy: '_term',
-            icon: 'av:sort-by-alpha'
+            icon: 'fa:sort-alpha-asc'
           }]
         }
       },
