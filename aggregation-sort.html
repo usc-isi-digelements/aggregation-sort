@@ -15,9 +15,8 @@ limitations under the License.
 -->
 
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../fontawesome-iconset/fa-all.html">
+<link rel="import" href="../icon-button/icon-button.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../paper-styles/color.html">
 
 <!--
@@ -49,29 +48,23 @@ Custom property         | Description                 | Default
       :host {
         display: block;
       }
-      iron-icon {
-        color: var(--default-icon-color, var(--paper-grey-600));
+      icon-button {
         margin-right: 5px;
-        --iron-icon-height: 16px;
-        --iron-icon-width: 16px;
-      }
-      iron-icon:hover {
-        cursor: pointer;
-        color: var(--icon-hover-color, var(--paper-grey-900));
-      }
-      .selected {
-        color: var(--selected-icon-color, var(--paper-grey-900));
+        --icon-button-color: var(--default-icon-color, var(--paper-grey-600));
+        --icon-button-active-color: var(--selected-icon-color, var(--paper-grey-900));
+        --icon-button-hovering-color: var(--icon-hover-color, var(--paper-grey-900));
       }
     </style>
 
     <div class="layout horizontal center">
       <template is="dom-repeat" items="[[sortOptions]]" as="option">
-        <iron-icon
-          class$="{{_getIconClass(orderBy, option)}}"
-          icon$="[[option.icon]]"
+        <icon-button
+          id="button[[option.title]]"
+          active="[[_getActiveStatus(orderBy, option)]]"
+          icon="[[option.icon]]"
           on-tap="_updateSort"
-          title="[[option.title]]">
-        </iron-icon>
+          title-tooltip="[[option.title]]">
+        </icon-button>
       </template>
     </div>
   </template>
@@ -131,12 +124,12 @@ Custom property         | Description                 | Default
        * Use 'selected' icon class when orderBy and option match.
        *
        * @param {String} orderBy
-       * @param {Object} an option in sortOptions
-       * @return {String} class to use
+       * @param {Object} option
+       * @return {Boolean}
        * @private
        */
-      _getIconClass: function(orderBy, option) {
-        return orderBy === option.orderBy ? 'selected' : '';
+      _getActiveStatus: function(orderBy, option) {
+        return orderBy === option.orderBy;
       }
     });
   </script>
