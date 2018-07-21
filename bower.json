@@ -9,14 +9,14 @@
     "polymer"
   ],
   "main": "aggregation-sort.html",
-  "homepage": "https://github.com/DigElements/aggregation-sort/",
+  "homepage": "https://github.com/usc-isi-digelements/aggregation-sort/",
   "ignore": [
     "/.*",
     "/test/"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.2",
-    "icon-button": "DigElements/icon-button#2.0.1",
+    "icon-button": "usc-isi-digelements/icon-button#2.0.1",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
     "paper-styles": "PolymerElements/paper-styles#^2.0.0"
   },
