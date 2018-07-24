@@ -1,22 +1,17 @@
 {
   "name": "aggregation-sort",
-  "description": "A Polymer Element showing sorting options as clickable icons.",
-  "version": "2.2.1",
+  "description":
+    "A Polymer Element showing sorting options as clickable icons.",
+  "version": "2.2.2",
   "authors": ["Next Century Corporation"],
   "license": "Apache-2.0",
-  "keywords": [
-    "web-component",
-    "polymer"
-  ],
+  "keywords": ["web-component", "polymer"],
   "main": "aggregation-sort.html",
   "homepage": "https://github.com/usc-isi-digelements/aggregation-sort/",
-  "ignore": [
-    "/.*",
-    "/test/"
-  ],
+  "ignore": ["/.*", "/test/"],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.2",
-    "icon-button": "usc-isi-digelements/icon-button#2.0.1",
+    "icon-button": "usc-isi-digelements/icon-button#^2.0.2",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
     "paper-styles": "PolymerElements/paper-styles#^2.0.0"
   },
